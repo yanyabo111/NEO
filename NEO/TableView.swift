@@ -13,7 +13,6 @@ class TableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         self.delegate = self
         self.dataSource = self
-        self.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,10 +20,7 @@ class TableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: TableViewCell = self.dequeueReusableCellWithIdentifier("cell") as! TableViewCell
-        cell.config()
-        
-        return cell
+        return self.dequeueReusableCellWithIdentifier("cell") as! TableViewCell
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

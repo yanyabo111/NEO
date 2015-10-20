@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    func config() {
+    override func awakeFromNib() {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.grayColor()
         imageView.layer.cornerRadius = 5
@@ -23,10 +23,16 @@ class TableViewCell: UITableViewCell {
             => imageView.top == self.contentView.top + 10
             => imageView.left == self.contentView.left + 10
             => imageView.right == self.contentView.right - 10
-            => imageView.width == imageView.height
+            => imageView.width == imageView.height * 1.66
         
         let textView = UILabel()
-        textView.text = "牛牛牛"
+        
+        let text = Int(arc4random_uniform(10)) > 4 ? "超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级牛牛牛" : "牛牛牛"
+        
+        textView.attributedText = NSMutableAttributedString(string: text)
+        textView.textColor = UIColor.whiteColor()
+        textView.backgroundColor = UIColor.blackColor()
+        textView.numberOfLines = 0
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         self.contentView.addSubview(textView)
